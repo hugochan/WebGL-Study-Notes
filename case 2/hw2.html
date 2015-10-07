@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script id="vertex-shader" type="x-shader/x-vertex">
+    attribute vec4 vPosition;
+    uniform mat4 uMVMatrix;
+    uniform mat4 uPMatrix;
+
+    void
+    main()
+    {
+        gl_Position = uPMatrix*uMVMatrix * vPosition;
+    }
+</script>
+
+<script id="fragment-shader" type="x-shader/x-fragment">
+    precision mediump float;
+
+    uniform vec4 uColor;
+
+    void
+    main()
+    {
+        gl_FragColor = uColor;
+    }
+</script>
+
+<script type="text/javascript" src="webgl-utils.js"></script>
+<script type="text/javascript" src="initShaders.js"></script>
+<script type="text/javascript" src="glMatrix.js"></script>
+<script type="text/javascript" src="hw2.js"></script>
+<script type="text/javascript" src="example.dat.js"></script>
+<script type="text/javascript" src="WGLGeomObj.js"></script>
+</head>
+
+<body>
+    <canvas id="gl-canvas" width="512" height="512">
+    Oops ... your browser doesn't support the HTML5 canvas element
+    </canvas>
+
+    <div>
+        <h3>Home Work 2</h3>
+Due: Midnight on Mon Sep 28th, 2015<br><br>
+This assignment requires you read in the included data and generate graphics primitives to produce a final image. The file uses the model of defining a geometry set and then specify the topology (lines, points, triangles) with indeces that index back into the current geometry set. Your job is to read the data array, there is a sample parser in the hw2.js file and create OpenGL primitives. The data format follows this scheme:<br><br>
+<code>
+NodeType   Count   Red   Green   Blue<br>
+# # # # # # # # # # # # # # # #
+</code><br><br>
+Where NodeType can be one of:<br><br>
+0: Coords 1: Points 2: Lines 3: Polygons 4: Triangles 5: PolyLines<br>
+The coords section consists of x,y,z triplets. Points Sections consist of single values of indexes into the current point set. Lines consist of pairs of values of indexes into the current point set. Polygons consist of a series of single values which are vertices into the current point set where each segment is terminated by a -1. Triangle sections consist of triplets of triangle vertices totaling the count. PolyLines consist of a series of single values which are vertices into the current point set where each segment is terminated by a -1.<br><br>
+An example file would be:<br>
+<pre>
+0 5 1.0 0.0 0.0
+1.0 2.0 3.0   4.0 5.0 6.0   7.0 8.0 9.0   6.0 5.0 4.0    3.0 2.0 1.0
+1	6    0.0  1.0  0.0
+4  0  2  1  3  4
+2	3    0.0  0.0  1.0
+1 2   2 3   4 0
+3	2    1.0  1.0  0.0
+2 3 2 4 0 -1   3 2 4 1 0 -1
+4	2    1.0  0.0  1.0
+2 4 3    1 0 4
+5	2    0.0  1.0  1.0
+0 1 2 3 3 -1   4 1 3 1 0 2 1 3 1 2 3 1  -1
+</pre><br>
+Where the first line says a coordinate object is coming with 5 points as the count and color in the form of an RGB value. The second line specifies the actual x,y,z values for each point, there are 5 sets of 3 floats. The third line specifies the next object to be a point object with 6 points and they are green. The fourth line specifies the points topology, these numbers refer to coords in the last defined geometry set.<br><br>
+        Things to remember:<br>
+        - There can be many coord sets defined, the toplology indeces always refer back to the last defined coord set.<br>
+        - Ploygons and Polylines can have mutliple segments, honor the -1 terminator within the indeces list.<br>
+        <br>
+
+Please take some time to think about how you want to organize your data objects and topology holders. This homework is meant to relate definiion of geometries and the difficulty in reading geometry data and then representing it in software.
+
+
+    </div>
+</body>
+</html>
