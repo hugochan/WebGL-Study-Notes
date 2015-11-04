@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Homework 3</title>
+    
+    <script type="text/javascript" src="http://osgjs.org/examples/vendors/Q.js"></script>
+    <script type="text/javascript" src="http://osgjs.org/examples/vendors/Hammer.js"></script>
+    <script type="text/javascript" src="http://osgjs.org/examples/vendors/Leap.js"></script>
+    <script type="text/javascript" src="js/OSG.js"></script>   
+    <script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>   
+    <script type="text/javascript" src="js/index.js"></script>
+
+  </head>
+
+  <body>
+    <h1>Homework 3</h1>
+    Please leverage this code to finish the assignment. <br><br>
+    Using OSG.js build a robot that includes a body, head, arms (3 segments), and legs (3 segments).<br>
+    Basic segments can be cubes in the OSGjs library<br>
+    Ensure:<br>
+    The hierarchy is correct, moving the body moves everything<br>
+    Each segment is movable on its own.<br>
+    Some UI to manipulate your robot. (Can be one set of sliders that switch between joints.<br>
+    Extra credit:<br>
+    Add hand, feet, fingers, and toes.<br>
+    X-Extra credit<br>
+    Animate the included Ogre<br>
+    <br>
+
+      <table style="width:100%">
+    <tr>
+    <td>
+        <canvas id="3DView" width="500" height="400">
+        Oops ... your browser doesn't support the HTML5 canvas element
+        </canvas>
+    </td>
+    <td>
+        <table style="width:100%">
+            <tr style="width:100%">
+                <td style="width:200px">
+                    <select name="bodypart" id="bodypart">
+                        <option value="lamont">Robot</option>
+                        <option value="head">Head</option>
+                        <option value="chest">Chest</option>
+                        <option value="rightshoulder">Right Shoulder</option>
+                        <option value="rightelbow">Right Elbow</option>
+                        <option value="rightwrist">Right Wrist</option>
+                        <option value="leftshoulder">Left Shoulder</option>
+                        <option value="leftelbow">Left Elbow</option>
+                        <option value="leftwrist">Left Wrist</option>
+                        <option value="righthip">Right Hip</option>
+                        <option value="rightknee">Right Knee</option>
+                        <option value="rightankle">Right Ankle</option>
+                        <option value="lefthip">Left Hip</option>
+                        <option value="leftknee">Left Knee</option>
+                        <option value="leftankle">Left Ankle</option>
+                    </select><br>
+                    Rot X: <input name="rotX" orien="x" type="range" value="0" max="360" min="1" oninput="handleScroll(this);"></input><br>
+                    Rot Y: <input name="rotY" orien="y" type="range" value="0" max="360" min="1" oninput="handleScroll(this);"></input><br>
+                    Rot Z: <input name="rotZ" orien="z" type="range" value="0" max="360" min="1" oninput="handleScroll(this);"></input><br><br><br><br>
+                </td>
+            </tr>
+        </table>
+    </td>
+    </tr>
+    </table>
+    
+  </body>
+</html>
